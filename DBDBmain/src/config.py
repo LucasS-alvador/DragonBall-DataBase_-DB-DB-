@@ -3,8 +3,10 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase
 from flask_cors import CORS
 
-from sqlalchemy import Integer, String
+from sqlalchemy import Integer, String, Date
 from sqlalchemy.orm import Mapped, mapped_column
+
+from datetime import date
 
 from typing import List, Optional
 
@@ -33,7 +35,7 @@ except KeyError:
 if MY_DB == "SQLITE":
     # some commands to make the database be created
     # at this folder
-    import os
+#import os
     this_path = os.path.dirname(os.path.abspath(__file__))
     file_path = os.path.join(this_path, 'database.db')
     DATABASE_URL = f"sqlite:///{file_path}"
