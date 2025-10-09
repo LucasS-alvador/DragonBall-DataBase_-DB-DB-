@@ -14,3 +14,9 @@ class Saga(db.Model):
         back_populates="sagas",
         foreign_keys=[obra_id])
     
+    persSagas: Mapped[List["PersonagemSaga"]] = db.relationship(
+        "PersonagemSaga", 
+        back_populates="saga", 
+        cascade="all, delete-orphan", 
+        passive_deletes=True)
+    

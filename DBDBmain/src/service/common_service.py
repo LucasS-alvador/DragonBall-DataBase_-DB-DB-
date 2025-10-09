@@ -1,6 +1,4 @@
 from src.config import *
-from src.model.person import *
-from src.model.car import *
 
 # https://stackoverflow.com/questions/73837260/using-kwargs-with-filter-by-sqlalchemy
 # https://medium.com/@nadiaaoliverr/o-que-significa-args-e-kwargs-em-python-d18a4120b744

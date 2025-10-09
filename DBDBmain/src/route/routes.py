@@ -1,7 +1,7 @@
 from src.config import *
 from src.service.common_service import *
-from src.model.person import *
-from src.model.car import *
+from src.model.old.person import *
+from src.model.old.car import *
 from src.utils import *
 
 

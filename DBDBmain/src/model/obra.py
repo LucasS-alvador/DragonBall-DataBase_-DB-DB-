@@ -6,7 +6,7 @@ class Obra(db.Model):
     nome: Mapped[str] = mapped_column(String(64), nullable=False)
     dtIni: Mapped[date] = mapped_column(Date, nullable=False)
     dtFim: Mapped[date] = mapped_column(Date, nullable=False)
-    imagem: Mapped[str] = mapped_column(String(250))
+    imagem: Mapped[str] = mapped_column(String(256))
 
     sagas: Mapped[List["Saga"]] = db.relationship(
         "Saga", 
