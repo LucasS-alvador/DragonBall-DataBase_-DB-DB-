@@ -14,13 +14,13 @@ class PersonagemSaga(db.Model):
     
     persBase: Mapped["PersonagemBase"] = db.relationship(
         "PersonagemBase",
-        back_populates="sagas",
+        back_populates="persSaga",
         foreign_keys=[persBase_id])
     
     saga: Mapped["Saga"] = db.relationship(
         "Saga",
-        back_populates="persSagas",
-        foreign_keys=[persBase_id])
+        back_populates="persSaga",
+        foreign_keys=[saga_id])
     
 #WARNING: I DO NOT KNOW HOW TO MAKE MANY_TO_MANY btw, so it's not done yet
 #PersonagemSaga: (PersonagemBase_id, Saga_id, poder, Trans_id[], imagem)

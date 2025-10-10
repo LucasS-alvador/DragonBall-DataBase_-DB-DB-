@@ -5,15 +5,17 @@ class PersonagemBase(db.Model):
     id: Mapped[int] = mapped_column(primary_key=True)
     nome: Mapped[str] = mapped_column(String(64), nullable=False)
     dataNasc: Mapped[date] = mapped_column(Date)
+    dataMorte: Mapped[Optional[date]] = mapped_column(Date, nullable=True)
     sexo: Mapped[str] = mapped_column(String(8))
     imagem: Mapped[str] = mapped_column(String(256))
+
     raca_id: Mapped[int] = mapped_column(db.Integer, 
                                          db.ForeignKey("raca.id", ondelete="CASCADE"), 
                                          nullable=False)
 
-    persSaga: Mapped[List["PersonagenSaga"]] = db.relationship(
-        "Saga", 
-        back_populates="obra", 
+    persSaga: Mapped[List["PersonagemSaga"]] = db.relationship(
+        "PersonagemSaga", 
+        back_populates="persBase", 
         cascade="all, delete-orphan", 
         passive_deletes=True)
     
