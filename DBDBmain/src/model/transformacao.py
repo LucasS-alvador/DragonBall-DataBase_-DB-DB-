@@ -1,6 +1,14 @@
 from src.config import *
 
+
+personagemsaga_transformacao = db.Table(
+    "PersonagemSaga_Transformacao",
+    db.Column("personagemsaga_id", db.Integer, db.ForeignKey("PersonagemSaga.id", ondelete="CASCADE"), primary_key=True),
+    db.Column("transformacao_id", db.Integer, db.ForeignKey("Transformacao.id", ondelete="CASCADE"), primary_key=True),
+)
+
 class Transformacao(db.Model):
+    __tablename__ = "Transformacao"
     
     id: Mapped[int] = mapped_column(primary_key=True)
     nome: Mapped[str] = mapped_column(String(256), nullable=False)
@@ -11,11 +19,11 @@ class Transformacao(db.Model):
     imagem: Mapped[str] = mapped_column(String(256))
     limMinutos: Mapped[int] = mapped_column(db.Integer)
 
-    persSagas: Mapped[List["PersonagemSaga"]] = db.relationship(
-        "PersonagemSaga", 
-        back_populates="trans", 
-        cascade="all, delete-orphan", 
-        passive_deletes=True)
-    
+    personagens = db.relationship(
+        "PersonagemSaga",
+        secondary=personagemsaga_transformacao,
+        back_populates="transformacoes"
+    )
+
 
 #Transformação: (Nome, cor, poder, especial, efeitoCol, imagem, tempo_lim)

@@ -1,11 +1,12 @@
 from src.config import *
 
 class Raca(db.Model):
+    __tablename__ = "Raca"
     
     id: Mapped[int] = mapped_column(primary_key=True)
     nome: Mapped[str] = mapped_column(String(256), nullable=False)
     cor: Mapped[str] = mapped_column(String(64))
-    desc: Mapped[str] = mapped_column(String[1024])
+    desc: Mapped[str] = mapped_column(String(1024))
     poderBase: Mapped[int] = mapped_column(db.Integer, nullable=False)    
     imagem: Mapped[str] = mapped_column(String(256))
 

@@ -1,6 +1,7 @@
 from src.config import *
 
 class PersonagemBase(db.Model):
+    __tablename__ = "PersonagemBase"
     
     id: Mapped[int] = mapped_column(primary_key=True)
     nome: Mapped[str] = mapped_column(String(64), nullable=False)
@@ -10,7 +11,7 @@ class PersonagemBase(db.Model):
     imagem: Mapped[str] = mapped_column(String(256))
 
     raca_id: Mapped[int] = mapped_column(db.Integer, 
-                                         db.ForeignKey("raca.id", ondelete="CASCADE"), 
+                                         db.ForeignKey("Raca.id", ondelete="CASCADE"), 
                                          nullable=False)
 
     persSaga: Mapped[List["PersonagemSaga"]] = db.relationship(
