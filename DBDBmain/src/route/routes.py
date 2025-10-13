@@ -3,7 +3,9 @@ from src.service.common_service import *
 from src.model.old.person import *
 from src.model.old.car import *
 from src.utils import *
+from flask import Flask, render_template, request, redirect, url_for
 
+app = Flask(__name__)
 
 # default route
 @app.route('/')
@@ -29,6 +31,7 @@ def create_person():
     data = request.json                         # get the data
     answer = create_simple_object(Person, data)   # try to create the object
     return jsonify(answer), 201 if answer["result"] == "ok" else 500 # return created or internal error
+
 
 @app.route('/cars', methods=['POST'])
 def create_cars():
