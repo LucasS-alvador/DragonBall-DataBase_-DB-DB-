@@ -8,6 +8,7 @@ from src.model.personagembase import *
 from src.model.personagemsaga import *
 from src.utils import *
 from flask import Flask, render_template, request, redirect, url_for
+from flask import jsonify
 
 app = Flask(__name__)
 
@@ -213,6 +214,55 @@ def delete_personagemsaga(obj_id):
 # def delete_example(obj_id):
 #     myjson = delete_object(Example, obj_id)
 #     return jsonify(myjson), 204 if myjson['result'] == 'ok' else 500
+
+
+
+
+@app.route('/api/<string:model>', methods=['GET'])
+def get_all(model):
+    models = {
+        "obra": Obra,
+        "saga": Saga,
+        "raca": Raca,
+        "personagembase": PersonagemBase,
+        "personagemsaga": PersonagemSaga,
+        "transformacao": Transformacao
+    }
+    Model = models.get(model.lower())
+    if not Model:
+        return jsonify({"error": "Model not found"}), 404
+
+    objs = db.session.query(Model).all()
+    return jsonify([
+        {c.name: (getattr(o, c.name).isoformat() if hasattr(getattr(o, c.name), "isoformat") else getattr(o, c.name))
+         for c in o.__table__.columns}
+        for o in objs
+    ])
+
+@app.route('/api/<string:model>/<int:id>', methods=['GET'])
+def get_by_id(model, id):
+    models = {
+        "obra": Obra,
+        "saga": Saga,
+        "raca": Raca,
+        "personagembase": PersonagemBase,
+        "personagemsaga": PersonagemSaga,
+        "transformacao": Transformacao
+    }
+    Model = models.get(model.lower())
+    if not Model:
+        return jsonify({"error": "Model not found"}), 404
+
+    o = db.session.get(Model, id)
+    if not o:
+        return jsonify({"error": "Not found"}), 404
+
+    return jsonify({
+        c.name: (getattr(o, c.name).isoformat() if hasattr(getattr(o, c.name), "isoformat") else getattr(o, c.name))
+        for c in o.__table__.columns
+    })
+
+
 
 # ---------------------------------------------------------------- END ----------------------------------------------------------------
 print("Routes loaded successfully. (reached routes.py)")
