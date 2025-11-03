@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=d:\Users\User\Documents\Antônio\DragonBall-DataBase_-DB-DB--main\DBDBmain\.venv
+set VIRTUAL_ENV=uhh
 
 if not defined PROMPT set PROMPT=$P$G
 
@@ -27,7 +27,7 @@ if not defined _OLD_VIRTUAL_PATH set _OLD_VIRTUAL_PATH=%PATH%
 set PATH=%VIRTUAL_ENV%\Scripts;%PATH%
 set VIRTUAL_ENV_PROMPT=(.venv) 
 
-set PYTHONPATH=%VIRTUAL_ENV%\\..\\DBDBmain;%PYTHONPATH%
+set PYTHONPATH=%VIRTUAL_ENV%\\..\\DBDBback;%PYTHONPATH%
 
 :END
 if defined _OLD_CODEPAGE (

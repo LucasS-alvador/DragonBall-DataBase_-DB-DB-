@@ -1,23 +1,33 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import Card from '../components/card';
 
-const classes = ["Obra", "Saga", "Raca", "PersonagemBase", "PersonagemSaga", "Transformacao"];
-
-export default function HomePage() {
+export default function Homepage() {
   return (
-    <div className="p-8">
-      <h1 className="text-3xl font-bold mb-6">Projeto Database Viewer</h1>
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-        {classes.map(cls => (
-          <Link
-            to={`/${cls.toLowerCase()}`}
-            key={cls}
-            className="p-6 bg-blue-100 rounded-lg hover:bg-blue-200 text-center shadow"
-          >
-            {cls}
-          </Link>
-        ))}
+    <section style={styles.container}>
+      <h1>Bem-vindo ao DBDB</h1>
+      <div style={styles.grid}>
+      <Card title="Exemplo 1" description="Descrição do card 1" />
+      <Card title="Exemplo 2" description="Descrição do card 2" />
+      <Card title="Exemplo 2" description="Descrição do card 2" />
+      <Card title="Exemplo 2" description="Descrição do card 2" />
+      <Card title="Exemplo 2" description="Descrição do card 2" />
       </div>
-    </div>
+    </section>
   );
 }
+
+const styles = {
+  container: {
+    padding: '2rem',
+    textAlign: 'center' as const,
+  },
+  title: {
+    fontSize: '2rem',
+    marginBottom: '2rem',
+  },
+  grid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+    gap: '1.5rem',
+    justifyItems: 'center',
+  },
+};

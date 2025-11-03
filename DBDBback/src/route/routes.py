@@ -264,5 +264,29 @@ def get_by_id(model, id):
 
 
 
+
+
+@app.route("/api/obras", methods=["GET"])
+def get_obras():
+    return jsonify([obra.to_dict() for obra in Obra.query.all()])
+
+@app.route("/api/obras/<int:id>", methods=["GET"])
+def get_obra(id):
+    obra = Obra.query.get_or_404(id)
+    return jsonify(obra.to_dict())
+
+@app.route("/api/obras", methods=["POST"])
+def add_obra():
+    data = request.json
+    nova = Obra(**data)
+    db.session.add(nova)
+    db.session.commit()
+    return jsonify(nova.to_dict()), 201
+
+
+
+
+
+
 # ---------------------------------------------------------------- END ----------------------------------------------------------------
 print("Routes loaded successfully. (reached routes.py)")
