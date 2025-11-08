@@ -12,6 +12,7 @@ export interface Saga {
   epIni: number;
   epFim: number;
   obra_id: number;
+  imagem?: string;
 }
 
 export interface Raca {

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { obraService } from "../../services/api";
 import Card from "../../components/card";
 import Link from "next/link";
 
@@ -8,10 +9,15 @@ export default function ObrasPage() {
   const [obras, setObras] = useState<any[]>([]);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:5000/api/obras")
-      .then((res) => res.json())
-      .then((data) => setObras(data))
-      .catch((err) => console.error(err));
+    const fetchObras = async () => {
+      try {
+        const data = await obraService.getAll();
+        setObras(data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    fetchObras();
   }, []);
 
   return (
@@ -23,7 +29,7 @@ export default function ObrasPage() {
           <Link key={obra.id} href={`/obras/${obra.id}`}>
             <Card
               title={obra.nome}
-              description={`Início: ${obra.data_ini} | Fim: ${obra.data_fin}`}
+              description={`Início: ${obra.dtIni} | Fim: ${obra.dtFim}`}
               image={obra.imagem}
             />
           </Link>

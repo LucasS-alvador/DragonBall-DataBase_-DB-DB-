@@ -1,29 +1,31 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { obraService } from "../../../services/api";
 import { useParams } from "next/navigation";
 import type { Obra } from "../../../types/models"; // ajuste o caminho se necessário
 
-// Tipo para o parâmetro dinâmico da rota
-type ObraParams = {
-  id: string;
-};
-
 export default function ObraDetalhe() {
-  const { id } = useParams<ObraParams>();
+  // useParams from next/navigation is not a generic; extract id safely
+  const params = useParams();
+  const id = Array.isArray((params as any)?.id) ? (params as any).id[0] : (params as any)?.id;
   const [obra, setObra] = useState<Obra | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (!id) return;
 
-    fetch(`http://127.0.0.1:5000/api/obras/${id}`)
-      .then((res) => res.json())
-      .then((data) => {
+    const fetchObra = async () => {
+      try {
+        const data = await obraService.getById(Number(id));
         setObra(data);
         setLoading(false);
-      })
-      .catch((err) => console.error(err));
+      } catch (err) {
+        console.error(err);
+        setLoading(false);
+      }
+    };
+    fetchObra();
   }, [id]);
 
   if (loading) return <p>Carregando...</p>;

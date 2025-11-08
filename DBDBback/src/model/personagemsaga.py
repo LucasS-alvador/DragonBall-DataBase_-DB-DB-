@@ -1,4 +1,7 @@
-from src.config import *
+from src.database import db
+from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy import Integer, String
+from typing import List
 from src.model.transformacao import personagemsaga_transformacao
 
 class PersonagemSaga(db.Model):

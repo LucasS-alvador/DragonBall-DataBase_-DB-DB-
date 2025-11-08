@@ -1,32 +1,15 @@
-from flask import Flask, jsonify, request, abort
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.orm import DeclarativeBase
-from flask_cors import CORS
-
-from sqlalchemy import Integer, String, Date
-from sqlalchemy.orm import Mapped, mapped_column
-
-from datetime import date
-
-from typing import List, Optional
-
 import os
-
+import sqlite3
 from sqlalchemy import event
 from sqlalchemy.engine import Engine
-import sqlite3
 
 # Enforce FK constraints in SQLite
 @event.listens_for(Engine, "connect")
 def enable_foreign_keys(dbapi_connection, connection_record):
-    if isinstance(dbapi_connection, sqlite3.Connection):  # Only for SQLite
+    if isinstance(dbapi_connection, sqlite3.Connection):
         cursor = dbapi_connection.cursor()
         cursor.execute("PRAGMA foreign_keys=ON;")
         cursor.close()
-
-
-class Base(DeclarativeBase):
-  pass
 
 DATABASE_URL = ""
 
@@ -57,15 +40,7 @@ elif MY_DB == "MYSQL":
     # mysql connection
     DATABASE_URL = "mysql+pymysql://sira:minhasenha@localhost/database"
 
-# create the app
-app = Flask(__name__)
-CORS(app)
-
-# Configure the SQLAlchemy URI (using SQLite for simplicity)
-app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # Disable unnecessary modification tracking
-
-# initialize the app with the extension
-db = SQLAlchemy(app)
+# Database configuration only
+print("Configuration loaded successfully. (reached config.py)")
 
 print("Configuration loaded successfully. (reached config.py)")

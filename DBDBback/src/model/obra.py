@@ -1,4 +1,8 @@
-from src.config import *
+from src.database import db
+from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy import Integer, String, Date
+from typing import List
+from datetime import date
 
 class Obra(db.Model):
     __tablename__ = "Obra"
@@ -12,5 +16,4 @@ class Obra(db.Model):
     sagas: Mapped[List["Saga"]] = db.relationship(
         "Saga", 
         back_populates="obra", 
-        cascade="all, delete-orphan", 
-        passive_deletes=True)
+        cascade="all, delete-orphan")

@@ -1,4 +1,5 @@
-from src.config import *
+from src.app import app
+from src.database import db
 from src.service.common_service import *
 from src.model.obra import *
 from src.model.saga import *
@@ -7,10 +8,7 @@ from src.model.transformacao import *
 from src.model.personagembase import *
 from src.model.personagemsaga import *
 from src.utils import *
-from flask import Flask, render_template, request, redirect, url_for
-from flask import jsonify
-
-app = Flask(__name__)
+from flask import render_template, request, redirect, url_for, jsonify
 
 # Obra: (Nome, data_ini, data_fin, imagem)
 # Saga: (Nome, desc, ep_ini, ep_fin, Obra_id, imagem)
@@ -54,15 +52,96 @@ def create_simple_object(mclass, data):
 
 @app.route('/obra', methods=['POST'])
 def create_obra():
-    data = request.json
-    answer = create_simple_object(Obra, data)
-    return jsonify(answer), 201 if answer["result"] == "ok" else 500
+    try:
+        data = request.json
+        print("[API] POST /obra - Dados recebidos:", data)
+        
+        # Validação básica dos campos
+        required_fields = ['nome', 'dtIni', 'dtFim']
+        for field in required_fields:
+            if field not in data:
+                return jsonify({
+                    "result": "error",
+                    "details": f"Campo obrigatório ausente: {field}"
+                }), 400
+        
+        # Tenta criar a obra
+        obra = create_object(Obra, **data)
+        response = {
+            "result": "ok",
+            "details": {
+                "id": obra.id,
+                "nome": obra.nome,
+                "dtIni": obra.dtIni.isoformat() if obra.dtIni else None,
+                "dtFim": obra.dtFim.isoformat() if obra.dtFim else None,
+                "imagem": obra.imagem
+            }
+        }
+        print("[API] POST /obra - Obra criada com sucesso:", response)
+        return jsonify(response), 201
+        
+    except ValueError as e:
+        print("[API] POST /obra - Erro de validação:", str(e))
+        return jsonify({
+            "result": "error",
+            "details": str(e)
+        }), 400
+    except Exception as e:
+        import traceback
+        print("[API] POST /obra - Erro interno:", str(e))
+        print(traceback.format_exc())
+        return jsonify({
+            "result": "error",
+            "details": f"Erro ao criar obra: {str(e)}"
+        }), 500
 
 @app.route('/saga', methods=['POST'])
 def create_saga():
-    data = request.json
-    answer = create_simple_object(Saga, data)
-    return jsonify(answer), 201 if answer["result"] == "ok" else 500
+    try:
+        data = request.json
+        print("[API] POST /saga - Dados recebidos:", data)
+
+        # Validação dos dados
+        required_fields = ['desc', 'epIni', 'epFim', 'obra_id']
+        for field in required_fields:
+            if field not in data:
+                return jsonify({
+                    "result": "error",
+                    "details": f"Campo obrigatório ausente: {field}"
+                }), 400
+
+        # Validação da obra_id
+        obra = get_object_by_attribute(Obra, 'id', data['obra_id'])
+        if not obra:
+            return jsonify({
+                "result": "error",
+                "details": f"Obra com ID {data['obra_id']} não encontrada"
+            }), 400
+
+        # Cria a saga
+        saga = create_object(Saga, **data)
+        response = {
+            "result": "ok",
+            "details": serialize_model(saga)
+        }
+        print("[API] POST /saga - Saga criada com sucesso:", response)
+        return jsonify(response), 201
+
+    except ValueError as e:
+        print("[API] POST /saga - Erro de validação:", str(e))
+        return jsonify({
+            "result": "error",
+            "details": str(e)
+        }), 400
+
+    except Exception as e:
+        import traceback
+        print("[API] POST /saga - Erro interno:", str(e))
+        print(traceback.format_exc())
+        return jsonify({
+            "result": "error",
+            "details": f"Erro ao criar saga: {str(e)}"
+        }), 500
 
 @app.route('/raca', methods=['POST'])
 def create_raca():
@@ -78,9 +157,23 @@ def create_transformacao():
 
 @app.route('/personagembase', methods=['POST'])
 def create_personagembase():
-    data = request.json
-    answer = create_simple_object(PersonagemBase, data)
-    return jsonify(answer), 201 if answer["result"] == "ok" else 500
+    try:
+        data = request.json
+        personagem = create_object(PersonagemBase, **data)
+        return jsonify({
+            "result": "ok",
+            "details": personagem.to_dict()
+        }), 201
+    except ValueError as e:
+        return jsonify({
+            "result": "error",
+            "details": str(e)
+        }), 400
+    except Exception as e:
+        return jsonify({
+            "result": "error",
+            "details": f"Erro ao criar personagem: {str(e)}"
+        }), 500
 
 @app.route('/personagemsaga', methods=['POST'])
 def create_personagemsaga():
@@ -101,12 +194,17 @@ def get_objects_helper(mclass):
     try:
         myjson = {"result": "ok"}   
         objs = get_objects(mclass)                   # get all objects
+        if not objs:
+            return {"result": "ok", "details": []}
         response = [serialize_model(u) for u in objs]  # serialize the objects
         myjson.update({"details": response})            # add the serialized object to the answer
+        print(f"[API] GET {mclass.__name__} - Found {len(objs)} objects")
         return myjson
     except Exception as ex:
-        print(f"Error during {mclass} listing: {ex}")
-        return {"result": "error", "details": f"error during {mclass} listing: {ex}"}
+        import traceback
+        print(f"Error during {mclass.__name__} listing: {ex}")
+        print(traceback.format_exc())
+        return {"result": "error", "details": f"error during {mclass.__name__} listing: {str(ex)}"}
 
 # @app.route('/persons', methods=['GET'])
 # def list_persons():
@@ -130,8 +228,14 @@ def list_saga():
 
 @app.route('/raca', methods=['GET'])
 def list_raca():
-    myjson = get_objects_helper(Raca)
-    return jsonify(myjson), 200 if myjson['result'] == 'ok' else 500
+    print("[API] GET /raca - Listando raças")
+    try:
+        myjson = get_objects_helper(Raca)
+        print("[API] GET /raca - Resposta:", myjson)
+        return jsonify(myjson), 200 if myjson['result'] == 'ok' else 500
+    except Exception as e:
+        print("[API] GET /raca - Erro:", str(e))
+        return jsonify({"result": "error", "details": "Erro interno ao listar raças"}), 500
 
 @app.route('/transformacao', methods=['GET'])
 def list_transformacao():
