@@ -16,7 +16,8 @@ export default function Card({ title, description, image }: CardProps) {
 
 const styles = {
   card: {
-    border: '1px solid #ddd',
+    border: '3px solid #000000ff',
+    color:'black',
     borderRadius: '8px',
     padding: '1.5rem',
     width: '100%',
@@ -27,7 +28,7 @@ const styles = {
     flexDirection: 'column' as const,
     gap: '1rem',
     cursor: 'pointer',
-    backgroundColor: 'white',
+    backgroundColor: '#ffc320ff',
     '&:hover': {
       transform: 'translateY(-5px)',
       boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
@@ -38,5 +39,6 @@ const styles = {
     height: '200px',
     objectFit: 'cover' as const,
     borderRadius: '4px',
+    border: '3px solid #000000ff',
   }
 };

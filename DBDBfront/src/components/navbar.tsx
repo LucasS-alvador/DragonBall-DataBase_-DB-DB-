@@ -21,7 +21,7 @@ const styles = {
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
-    backgroundColor: "#1a1a1a",
+    backgroundColor: "#4169E1",
     padding: "1rem 2rem",
     color: "#fff",
     boxShadow: "0 2px 4px rgba(0,0,0,0.2)",
@@ -29,7 +29,7 @@ const styles = {
   logo: {
     fontWeight: "bold",
     fontSize: "1.5rem",
-    color: "#0070f3",
+    color: "gold",
   },
   links: {
     display: "flex",
@@ -42,7 +42,7 @@ const styles = {
     borderRadius: "4px",
     transition: "background-color 0.2s",
     ":hover": {
-      backgroundColor: "#333",
+      backgroundColor: "orange",
     },
   },
 };

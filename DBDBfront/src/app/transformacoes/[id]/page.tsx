@@ -81,7 +81,7 @@ const styles = {
     padding: "2rem",
     maxWidth: "1200px",
     margin: "0 auto",
-    backgroundColor: "#ff4141ff",
+    backgroundColor: "ghostwhite",
   },
   backButton: {
     display: "inline-block",
@@ -94,16 +94,18 @@ const styles = {
     display: "grid",
     gridTemplateColumns: "1fr 2fr",
     gap: "2rem",
-    backgroundColor: "white",
+    backgroundColor: "#ff4141ff",
     borderRadius: "8px",
     padding: "2rem",
     boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
+    border: '3px solid #000000ff',
   },
   imageContainer: {
     width: "100%",
     aspectRatio: "1",
     borderRadius: "8px",
     overflow: "hidden",
+    border: '3px solid #000000ff',
   },
   image: {
     width: "100%",
@@ -114,19 +116,21 @@ const styles = {
     display: "flex",
     flexDirection: "column" as const,
     gap: "1.5rem",
+    color:"#ffc320ff"
   },
   title: {
     fontSize: "2.5rem",
     margin: 0,
-    color: "#333",
+    color:"#ffc320ff"
   },
   details: {
     display: "flex",
     flexDirection: "column" as const,
     gap: "1rem",
+    color:"#ffc320ff"
   },
   detail: {
     fontSize: "1.1rem",
-    color: "#666",
+    color:"#ffc320ff"
   },
 };

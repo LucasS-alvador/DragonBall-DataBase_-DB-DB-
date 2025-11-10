@@ -35,7 +35,7 @@ def populate_db():
                 Raca,
                 nome='Saiyajin',
                 desc='Uma raça guerreira do Planeta Vegeta, conhecida por seu orgulho e poder de luta crescente.',
-                imagem='https://static.wikia.nocookie.net/dragonball/images/4/4c/Saiyans.jpg',
+                imagem='https://static.wikia.nocookie.net/tkoc/images/c/c4/SaiyansDBKK.png/revision/latest?cb=20130305060812&path-prefix=pt-br',
                 cor='#FFD700',  # Dourado
                 poderBase=1000
             ),
@@ -43,7 +43,7 @@ def populate_db():
                 Raca,
                 nome='Namekuseijin',
                 desc='Raça pacífica do Planeta Namekusei, com habilidades de cura e criação das esferas do dragão.',
-                imagem='https://static.wikia.nocookie.net/dragonball/images/f/f2/Namekians.jpg',
+                imagem='https://www.einerd.com/wp-content/uploads/2021/02/namekuseijins-dragon-ball-super-e1614168124558.jpg',
                 cor='#228B22',  # Verde floresta
                 poderBase=500
             ),
@@ -51,7 +51,7 @@ def populate_db():
                 Raca,
                 nome='Humano',
                 desc='Habitantes da Terra, com potencial para desenvolver poderes através de treinamento.',
-                imagem='https://static.wikia.nocookie.net/dragonball/images/e/e5/Humans.jpg',
+                imagem='https://static.wikia.nocookie.net/dragonball/images/d/d8/SatanFan%28Jmp%29.png/revision/latest?cb=20110222143410',
                 cor='#CD853F',  # Marrom peru
                 poderBase=100
             ),
@@ -59,7 +59,7 @@ def populate_db():
                 Raca,
                 nome='Androide',
                 desc='Seres artificiais criados por cientistas, com poder ilimitado.',
-                imagem='https://static.wikia.nocookie.net/dragonball/images/8/89/Androids.jpg',
+                imagem='https://static.wikia.nocookie.net/dragonball/images/1/10/Androids.jpeg/revision/latest?cb=20141228144731&path-prefix=pt-br',
                 cor='#4682B4',  # Azul aço
                 poderBase=5000
             )
@@ -71,7 +71,7 @@ def populate_db():
             nome='Dragon Ball',
             dtIni=date(1986, 2, 26),
             dtFim=date(1989, 4, 19),
-            imagem='https://static.wikia.nocookie.net/dragonball/images/4/4b/Dragon_Ball_Anime_Logo.png'
+            imagem='https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=cover,format=auto,quality=85,width=1920/keyart/G8DHV7W21-backdrop_wide'
         )
 
         # Sagas Dragon Ball
@@ -81,7 +81,7 @@ def populate_db():
             epIni=1,
             epFim=13,
             obra_id=db_classico.id,
-            imagem='https://static.wikia.nocookie.net/dragonball/images/5/53/Emperor_Pilaf_Saga.jpg'
+            imagem='https://lh4.googleusercontent.com/proxy/Pv26eoJTCtZhJ9lK_-OkyTw2g03SvVqZK4bItkS3PQW2toEGhQFqJQROuD1tYL-yDZ7JjIHoE2mG-1EJoGLJVO4Snq6DVB-B2AU8r8CIn1USS8m-la7_yjUT7sWEmmSYEQ'
         )
 
         get_or_create_object(
@@ -90,7 +90,7 @@ def populate_db():
             epIni=14,
             epFim=28,
             obra_id=db_classico.id,
-            imagem='https://static.wikia.nocookie.net/dragonball/images/a/a3/Tournament_Saga.jpg'
+            imagem='https://static.wikia.nocookie.net/dragonball/images/c/c4/Tournamentsagaconceptart.jpg/revision/latest/scale-to-width-down/648?cb=20150415021349&path-prefix=pt-br'
         )
 
         # Dragon Ball Z
@@ -99,7 +99,7 @@ def populate_db():
             nome='Dragon Ball Z',
             dtIni=date(1989, 4, 26),
             dtFim=date(1996, 1, 31),
-            imagem='https://static.wikia.nocookie.net/dragonball/images/4/4a/Dragon_Ball_Z_Anime_Logo.png'
+            imagem='https://m.media-amazon.com/images/S/pv-target-images/c9295bf92a8c87f865116be60daa6a31509823c8c11da3fcbc5a6dc589ff9da2.jpg'
         )
 
         # Sagas DBZ
@@ -109,7 +109,7 @@ def populate_db():
             epIni=1,
             epFim=35,
             obra_id=dbz.id,
-            imagem='https://static.wikia.nocookie.net/dragonball/images/c/c5/SaiyanSagaNV.png'
+            imagem='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0sSwREAJH9f90DqHjlSK1aOOh_sI3-i9aKw&s'
         )
 
         get_or_create_object(
@@ -118,7 +118,7 @@ def populate_db():
             epIni=36,
             epFim=107,
             obra_id=dbz.id,
-            imagem='https://static.wikia.nocookie.net/dragonball/images/f/f7/FreezaSagaNV.png'
+            imagem='https://i.redd.it/whats-your-favourite-section-of-the-frieza-saga-v0-hf4cnw2o5uue1.png?width=1000&format=png&auto=webp&s=8d2bbe99f5660e3df8f59e4e085f709a97da9ad2'
         )
 
         get_or_create_object(

@@ -33,6 +33,7 @@ export default function ObraDetalhe() {
 
   return (
     <section style={styles.container}>
+      <div style={styles.container}>
       <h1>{obra.nome}</h1>
       {obra.imagem && (
         <img src={obra.imagem} alt={obra.nome} style={styles.image} />
@@ -41,41 +42,105 @@ export default function ObraDetalhe() {
         <p><b>Data de início:</b> {obra.dtIni}</p>
         <p><b>Data de fim:</b> {obra.dtFim}</p>
       </div>
-
-      <a href={`/obras/${id}/edit`} style={styles.editBtn}>
-        Editar Obra
-      </a>
+      </div>
     </section>
   );
 }
 
 const styles = {
   container: {
-    maxWidth: "600px",
-    margin: "2rem auto",
-    padding: "1rem",
-    textAlign: "center" as const,
-    border: "1px solid #ddd",
+    padding: "2rem",
+    maxWidth: "1200px",
+    margin: "0 auto",
+    backgroundColor: "ghostwhite",
+  },
+  backButton: {
+    display: "inline-block",
+    marginBottom: "2rem",
+    color: "#0070f3",
+    textDecoration: "none",
+    fontSize: "1.1rem",
+  },
+  content: {
+    display: "grid",
+    gridTemplateColumns: "1fr 2fr",
+    gap: "2rem",
+    backgroundColor: "#ff4141ff",
     borderRadius: "8px",
-    background: "#fff",
+    padding: "2rem",
+    boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
+    border: '3px solid #000000ff',
+  },
+  imageContainer: {
+    width: "100%",
+    aspectRatio: "1",
+    borderRadius: "8px",
+    overflow: "hidden",
+    border: '3px solid #000000ff',
   },
   image: {
-    maxWidth: "100%",
-    height: "auto",
-    borderRadius: "8px",
-    marginBottom: "1rem",
+    width: "100%",
+    height: "100%",
+    objectFit: "cover" as const,
+  },
+  info: {
+    display: "flex",
+    flexDirection: "column" as const,
+    gap: "1.5rem",
+    color:"#ffc320ff"
+  },
+  title: {
+    fontSize: "2.5rem",
+    margin: 0,
+    color:"#ffc320ff"
   },
   details: {
-    textAlign: "left" as const,
+    display: "flex",
+    flexDirection: "column" as const,
+    gap: "1rem",
+    color:"#ffc320ff"
+  },
+  detail: {
+    fontSize: "1.1rem",
+    color:"#ffc320ff"
+  },
+  description: {
+  marginTop: "1rem",
+  "& p": {
+    margin: "0.5rem 0 0 0",
     lineHeight: "1.6",
-  },
-  editBtn: {
-    display: "inline-block",
-    marginTop: "1rem",
-    backgroundColor: "#f39c12",
-    color: "#fff",
-    padding: "0.5rem 1rem",
-    borderRadius: "4px",
-    textDecoration: "none",
-  },
-};
+    color: "#444",
+    }
+  }
+}
+
+// const styles = {
+//   container: {
+//     maxWidth: "600px",
+//     margin: "2rem auto",
+//     padding: "1rem",
+//     textAlign: "center" as const,
+//     border: "1px solid #ddd",
+//     borderRadius: "8px",
+//     background: "#fff",
+//   },
+//   image: {
+//     maxWidth: "100%",
+//     height: "auto",
+//     borderRadius: "8px",
+//     marginBottom: "1rem",
+//   },
+//   details: {
+//     textAlign: "left" as const,
+//     lineHeight: "1.6",
+//   },
+//   editBtn: {
+//     display: "inline-block",
+//     marginTop: "1rem",
+//     backgroundColor: "#f39c12",
+//     color: "#fff",
+//     padding: "0.5rem 1rem",
+//     borderRadius: "4px",
+//     textDecoration: "none",
+//   },
+// };

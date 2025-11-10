@@ -49,9 +49,11 @@ const styles = {
   },
   addBtn: {
     display: "inline-block",
-    backgroundColor: "#0070f3",
-    color: "white",
+    backgroundColor: "#4169E1",
+    border: '3px solid #000000ff',
+    color: "#ffc320ff",
     padding: "0.5rem 1rem",
+    fontWeight:"bold",
     borderRadius: "4px",
     textDecoration: "none",
   },
