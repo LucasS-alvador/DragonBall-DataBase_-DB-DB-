@@ -29,6 +29,7 @@ export interface PersonagemBase {
   nome: string;
   dataNasc: string;
   dataMorte?: string;
+  descricao?: string;
   sexo: string;
   imagem: string;
   raca_id: number;
@@ -37,9 +38,11 @@ export interface PersonagemBase {
 export interface PersonagemSaga {
   id: number;
   poderMult: number;
-  imagem: string;
+  imagem?: string;
   persBase_id: number;
   saga_id: number;
+  // relation may not be returned by the simple GET endpoint
+  transformacoes?: any[];
 }
 
 export interface Transformacao {
@@ -49,6 +52,6 @@ export interface Transformacao {
   especial: string;
   efeitoCol: string;
   poderMult: number;
-  imagem: string;
-  limMinutos: number;
+  imagem?: string;
+  limMinutos?: number | null;
 }

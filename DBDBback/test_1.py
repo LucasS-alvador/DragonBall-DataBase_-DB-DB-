@@ -3,15 +3,15 @@ import pytest
 from datetime import date
 from warnings import warn
 
-from src.config import app, db
-from src.service.common_service import create_object, get_object_by_attribute, delete_object, get_objects
+from config import app, db
+from service.common_service import create_object, get_object_by_attribute, delete_object, get_objects
 
-from src.model.raca import Raca
-from src.model.obra import Obra
-from src.model.saga import Saga
-from src.model.personagembase import PersonagemBase
-from src.model.personagemsaga import PersonagemSaga
-from src.model.transformacao import Transformacao
+from model.raca import Raca
+from model.obra import Obra
+from model.saga import Saga
+from model.personagembase import PersonagemBase
+from model.personagemsaga import PersonagemSaga
+from model.transformacao import Transformacao
 
 @pytest.fixture(scope="module", autouse=True)
 def setup_database():

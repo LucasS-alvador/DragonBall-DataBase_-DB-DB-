@@ -1,4 +1,4 @@
-from src.database import db
+from database import db
 from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy import Integer, String, Date
 from typing import List, Optional

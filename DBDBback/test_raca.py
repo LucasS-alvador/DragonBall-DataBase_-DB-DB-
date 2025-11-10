@@ -1,15 +1,15 @@
 # import pytest
 # from datetime import date
 
-# from src.config import app
-# from src.service.common_service import create_object, get_object_by_attribute, delete_object
+# from config import app
+# from service.common_service import create_object, get_object_by_attribute, delete_object
 # # import warnings
-# from src.model.obra import *
-# from src.model.saga import *
-# from src.model.raca import *
-# from src.model.personagembase import *
-# from src.model.personagemsaga import *
-# from src.model.transformacao import *
+# from model.obra import *
+# from model.saga import *
+# from model.raca import *
+# from model.personagembase import *
+# from model.personagemsaga import *
+# from model.transformacao import *
 
 # def test_create_raca():
 #     with app.app_context():

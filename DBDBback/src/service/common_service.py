@@ -1,4 +1,4 @@
-from src.database import db
+from database import db
 from datetime import datetime, date
 
 # --- create

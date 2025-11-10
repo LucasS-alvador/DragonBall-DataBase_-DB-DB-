@@ -1,91 +1,81 @@
-# Setup:
+# Setup do Backend DragonBall-DataBase
 
-1) Activate the virtual environment:
-LINUX:
-```
-source setup/venv/bin/activate
-```
-WINDOWS: 
-```
-.\venv\Scripts\Activate
-```
+## 1. Criar e Ativar o Ambiente Virtual
 
-If there is not a virtual environment ("venv" folder), create it:
-```
-cd setup
-python3 -m venv venv
+Na pasta `DBDBback`, execute:
 
-After creation, active it:
-
-LINUX:
+Windows:
 ```
-source venv/bin/activate
+python -m venv .venv
+.venv\Scripts\activate
 ```
 
-WINDOWS:
+Linux/macOS:
 ```
-.\venv\Scripts\Activate
-```
-
-Install the libraries:
-```
-pip3 install -r requirements.txt
-```
-* Alternatively, you can install libraries by hand:
-```
-pip3 install flask
-pip3 install flask_sqlalchemy
-pip3 install flask_cors
-pip3 install pytest
-```
-* Maintenance: *when necessary*, generate new requirements:
-```
-pip3 freeze > requirements.txt
-```
-2) Configure environment variables PYTHONPATH and MY_DB   
-
-Linux/macOS
-```
-export PYTHONPATH=/home/friend/02-gitlab/prog25/web/python/flask/01-back-persons-cars:$PYTHONPATH
-export MY_DB="SQLITE"
-```
-Windows
-```
-export PYTHONPATH=C:\02-gitlab\prog25\web\python\flask\01-back-persons-cars\setup;PYTHONPATH%
-export MY_DB="SQLITE"
+python3 -m venv .venv
+source .venv/bin/activate
 ```
 
-If executing Powershell:
+## 2. Instalar Dependências
+
+Com o ambiente virtual ativado:
 ```
-$env:PYTHONPATH = "C:\02-gitlab\prog25\web\python\flask\01-back-persons-cars\setup"
+pip install -r setup/requirements.txt
+```
+
+## 3. Configurar Variáveis de Ambiente
+
+Windows (PowerShell):
+```
+$env:PYTHONPATH="."
 $env:MY_DB="SQLITE"
 ```
 
-3) You can remove the database.db file and re-create the database:
+Windows (CMD):
 ```
-rm src/database.db
-python3 setup/create_database.py
+set PYTHONPATH=.
+set MY_DB=SQLITE
 ```
 
-4) Run the backend tests:
-
-Goto the "tests" folder
-
-Run:
+Linux/macOS:
 ```
-pytest -s
+export PYTHONPATH=.
+export MY_DB=SQLITE
 ```
-5) If tests are ok, you can run the backend :-)
 
-In folder "src", run:
+## 4. Criar o Banco de Dados
+
 ```
-flask run --debug
+python setup/create_database.py
 ```
-6) Call the backend, in the web browser:
 
-localhost:5000
+## 5. Popular o Banco de Dados (Opcional)
 
-export PYTHONPATH=C:\Users\discente\Music\DragonBalls\prog25\web\python\flask\01-back-persons-cars\setup;%PYTHONPATH%
-export MY_DB="SQLITE"
+Se desejar adicionar dados iniciais:
+```
+python setup/populate_db.py
+```
 
-C:\Users\discente\Music\DragonBalls\prog25\web\python\flask\01-back-persons-cars\setup
+## 6. Executar o Backend
+
+Da pasta `DBDBback`:
+```
+python src/app.py
+```
+
+O servidor estará disponível em: http://localhost:5000
+
+## 7. Executar Testes (Opcional)
+
+Para executar os testes:
+```
+python -m pytest
+```
+
+## Notas:
+- O arquivo `fix_imports.py` e `cleanup_duplicate_races.py` não são mais necessários, pois foram usados apenas para correções pontuais.
+- Mantenha o ambiente virtual (.venv) na raiz do projeto (pasta DBDBback)
+- Se precisar adicionar novas dependências, use `pip install <pacote>` e depois atualize o requirements.txt:
+  ```
+  pip freeze > setup/requirements.txt
+  ```

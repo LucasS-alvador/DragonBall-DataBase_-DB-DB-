@@ -1,12 +1,12 @@
 # import pytest
 # from datetime import date
 
-# from src.config import app
-# from src.service.common_service import create_object, get_object_by_attribute, delete_object
+# from config import app
+# from service.common_service import create_object, get_object_by_attribute, delete_object
 # import warnings
-# from src.model.personagembase import * 
-# from src.model.personagemsaga import *
-# from src.model.saga import *
+# from model.personagembase import * 
+# from model.personagemsaga import *
+# from model.saga import *
 
 # def test_create_personagem_saga():
 #     with app.app_context():

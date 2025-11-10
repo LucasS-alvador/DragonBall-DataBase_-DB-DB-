@@ -6,8 +6,8 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 if ROOT not in sys.path:
     sys.path.insert(0, ROOT)
 
-from src.app import app
-from src.database import db
+from app import app
+from database import db
 from sqlalchemy import text
 
 def migrate():

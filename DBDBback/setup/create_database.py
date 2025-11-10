@@ -6,13 +6,18 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 if ROOT not in sys.path:
     sys.path.insert(0, ROOT)
 
-from src.app import app, db
-from src.model.obra import *
-from src.model.saga import *
-from src.model.raca import *
-from src.model.transformacao import *
-from src.model.personagembase import *
-from src.model.personagemsaga import *
+# Also add the `src` folder to path so modules like `database` and `app` are importable
+SRC = os.path.join(ROOT, 'src')
+if SRC not in sys.path:
+    sys.path.insert(0, SRC)
+
+from app import app, db
+from model.obra import *
+from model.saga import *
+from model.raca import *
+from model.transformacao import *
+from model.personagembase import *
+from model.personagemsaga import *
 
 def create_db():
     # Delete existing database file if it exists

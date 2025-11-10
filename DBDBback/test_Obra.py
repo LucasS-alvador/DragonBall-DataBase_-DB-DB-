@@ -1,10 +1,10 @@
 # import pytest
 # from datetime import date
 
-# from src.config import app
-# from src.service.common_service import create_object, get_object_by_attribute, delete_object
-# from src.model.obra import Obra  # Adjust path to where your Obra model is
-# from src.model.saga import Saga
+# from config import app
+# from service.common_service import create_object, get_object_by_attribute, delete_object
+# from model.obra import Obra  # Adjust path to where your Obra model is
+# from model.saga import Saga
 # import warnings
 
 # def test_create_obra():

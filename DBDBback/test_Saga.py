@@ -1,13 +1,13 @@
 import pytest
 import os
 from flask import Flask
-from src.database import db
-from src.service.common_service import create_object, get_object_by_attribute, delete_object
-from src.model.obra import Obra
-from src.model.saga import Saga
-from src.model.personagemsaga import PersonagemSaga
-from src.model.personagembase import PersonagemBase
-from src.model.raca import Raca
+from database import db
+from service.common_service import create_object, get_object_by_attribute, delete_object
+from model.obra import Obra
+from model.saga import Saga
+from model.personagemsaga import PersonagemSaga
+from model.personagembase import PersonagemBase
+from model.raca import Raca
 from datetime import date
 from warnings import warn
 

@@ -1,13 +1,13 @@
-from src.app import app
-from src.database import db
-from src.service.common_service import *
-from src.model.obra import *
-from src.model.saga import *
-from src.model.raca import *
-from src.model.transformacao import *
-from src.model.personagembase import *
-from src.model.personagemsaga import *
-from src.utils import *
+from app import app
+from database import db
+from service.common_service import *
+from model.obra import *
+from model.saga import *
+from model.raca import *
+from model.transformacao import *
+from model.personagembase import *
+from model.personagemsaga import *
+from utils import *
 from flask import render_template, request, redirect, url_for, jsonify
 
 # Obra: (Nome, data_ini, data_fin, imagem)

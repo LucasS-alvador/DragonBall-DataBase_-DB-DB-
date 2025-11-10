@@ -7,12 +7,17 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 if ROOT not in sys.path:
     sys.path.insert(0, ROOT)
 
-from src.app import app, db
-from src.model.obra import Obra
-from src.model.saga import Saga
-from src.model.raca import Raca
-from src.model.personagembase import PersonagemBase
-from src.service.common_service import create_object, get_object_by_attribute
+# Also add the `src` folder to path so modules like `app` and `database` are importable
+SRC = os.path.join(ROOT, 'src')
+if SRC not in sys.path:
+    sys.path.insert(0, SRC)
+
+from app import app, db
+from model.obra import Obra
+from model.saga import Saga
+from model.raca import Raca
+from model.personagembase import PersonagemBase
+from service.common_service import create_object, get_object_by_attribute
 
 def get_or_create_object(Model, **kwargs):
     """Get an existing object or create a new one if it doesn't exist"""

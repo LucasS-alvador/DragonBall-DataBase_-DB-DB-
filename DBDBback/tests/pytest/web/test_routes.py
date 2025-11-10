@@ -1,6 +1,6 @@
-# from src.config import app, db
+# from config import app, db
 # from datetime import date, time
-# from src.route.routes import *
+# from route.routes import *
 
 # import pytest
 

@@ -1,4 +1,4 @@
-from src.config import *
+from config import *
 
 class Person(db.Model):
     

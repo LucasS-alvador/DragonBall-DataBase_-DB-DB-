@@ -1,7 +1,12 @@
+from dotenv import load_dotenv
+import os
 from flask import Flask
 from flask_cors import CORS
-from src.database import db
-from src.config import DATABASE_URL
+from database import db
+from config import DATABASE_URL
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Create Flask app
 app = Flask(__name__)
@@ -27,15 +32,15 @@ app.config['SQLALCHEMY_EXPIRE_ON_COMMIT'] = False
 db.init_app(app)
 
 # Import models after db is set up
-from src.model.obra import Obra
-from src.model.saga import Saga
-from src.model.raca import Raca
-from src.model.transformacao import Transformacao
-from src.model.personagembase import PersonagemBase
-from src.model.personagemsaga import PersonagemSaga
+from model.obra import Obra
+from model.saga import Saga
+from model.raca import Raca
+from model.transformacao import Transformacao
+from model.personagembase import PersonagemBase
+from model.personagemsaga import PersonagemSaga
 
 # Import routes (after models)
-from src.route.routes import *
+from route.routes import *
 
 print("Application started successfully. (reached app.py)")
 

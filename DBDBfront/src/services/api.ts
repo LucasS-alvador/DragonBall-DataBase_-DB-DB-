@@ -4,7 +4,7 @@ import { Obra, Saga, Raca, Transformacao, PersonagemBase, PersonagemSaga } from 
 // Obras
 export const obraService = {
   getAll: () => api.get('/obra').then(res => res.data.details),
-  getById: (id: number) => api.get(`/obra/${id}`).then(res => res.data),
+  getById: (id: number) => api.get(`/api/obra/${id}`).then(res => res.data),
   create: (obra: Omit<Obra, 'id'>) => {
     console.log('[API] Criando obra:', obra);
     return api.post('/obra', obra)
@@ -23,7 +23,7 @@ export const obraService = {
 // Sagas
 export const sagaService = {
   getAll: () => api.get('/saga').then(res => res.data.details),
-  getById: (id: number) => api.get(`/saga/${id}`).then(res => res.data),
+  getById: (id: number) => api.get(`/api/saga/${id}`).then(res => res.data),
   create: (saga: Omit<Saga, 'id'>) => {
     console.log('[API] Criando saga:', saga);
     return api.post('/saga', saga)
@@ -42,7 +42,7 @@ export const sagaService = {
 // Raças
 export const racaService = {
   getAll: () => api.get('/raca').then(res => res.data.details),
-  getById: (id: number) => api.get(`/raca/${id}`).then(res => res.data),
+  getById: (id: number) => api.get(`/api/raca/${id}`).then(res => res.data),
   create: (raca: Omit<Raca, 'id'>) => api.post('/raca', raca).then(res => res.data),
   delete: (id: number) => api.delete(`/raca/${id}`).then(res => res.data),
 };
@@ -50,7 +50,7 @@ export const racaService = {
 // Transformações
 export const transformacaoService = {
   getAll: () => api.get('/transformacao').then(res => res.data.details),
-  getById: (id: number) => api.get(`/transformacao/${id}`).then(res => res.data),
+  getById: (id: number) => api.get(`/api/transformacao/${id}`).then(res => res.data),
   create: (trans: Omit<Transformacao, 'id'>) => api.post('/transformacao', trans).then(res => res.data),
   delete: (id: number) => api.delete(`/transformacao/${id}`).then(res => res.data),
 };
@@ -58,7 +58,7 @@ export const transformacaoService = {
 // Personagens Base
 export const personagemBaseService = {
   getAll: () => api.get('/personagembase').then(res => res.data.details),
-  getById: (id: number) => api.get(`/personagembase/${id}`).then(res => res.data),
+  getById: (id: number) => api.get(`/api/personagembase/${id}`).then(res => res.data),
   create: (pers: Omit<PersonagemBase, 'id'>) => api.post('/personagembase', pers).then(res => res.data),
   delete: (id: number) => api.delete(`/personagembase/${id}`).then(res => res.data),
 };
@@ -66,7 +66,7 @@ export const personagemBaseService = {
 // Personagens em Sagas
 export const personagemSagaService = {
   getAll: () => api.get('/personagemsaga').then(res => res.data.details),
-  getById: (id: number) => api.get(`/personagemsaga/${id}`).then(res => res.data),
+  getById: (id: number) => api.get(`/api/personagemsaga/${id}`).then(res => res.data),
   create: (pers: Omit<PersonagemSaga, 'id'>) => api.post('/personagemsaga', pers).then(res => res.data),
   delete: (id: number) => api.delete(`/personagemsaga/${id}`).then(res => res.data),
 };

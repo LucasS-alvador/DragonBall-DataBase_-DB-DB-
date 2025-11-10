@@ -1,4 +1,4 @@
-from src.database import db
+from database import db
 from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy import Integer, String
 from typing import List
@@ -40,7 +40,7 @@ class Saga(db.Model):
             raise ValueError(f"O episódio inicial ({self.epIni}) deve ser maior que zero")
         
         # Validar obra
-        from src.model.obra import Obra
+        from model.obra import Obra
         session: Session = db.session
         obra = session.get(Obra, self.obra_id)
         if not obra:

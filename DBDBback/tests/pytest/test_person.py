@@ -1,8 +1,8 @@
 # import pytest
 
-# from src.config import *
-# from src.service.common_service import *
-# from src.model.person import Person
+# from config import *
+# from service.common_service import *
+# from model.person import Person
 
 # def test_creation():
 #     with app.app_context():
