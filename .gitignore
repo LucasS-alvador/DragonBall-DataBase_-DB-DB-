@@ -39,8 +39,6 @@ yarn-error.log*
 .vercel
 
 # SQLite database files
-*.db
-database.db
 dragonball.db
 *.sqlite
 *.sqlite3
